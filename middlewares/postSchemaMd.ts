@@ -1,5 +1,6 @@
-import { NextFunction } from "express";
+import { Request,Response,NextFunction } from "express";
 import Joi from "joi";
+
 
 function postSchemaMd(req:Request,res:Response,next:NextFunction) {
     const body = req.body;
