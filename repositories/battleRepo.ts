@@ -24,9 +24,20 @@ async function saveBattle(user:string,battle:string) {
     `,[db.user,db.wins,db.losses,db.drawns]);
 }
 
+async function ranking() {
+    const rank = await connection.query(`
+    SELECT username,SUM(wins) as wins,
+    SUM(losses) as losses,
+    SUM(draws) as draws 
+    FROM fighters GROUP BY username
+    ORDER BY wins DESC;
+    `);
+    return rank.rows
+}
 
 const battleRepo = {
     saveBattle,
+    ranking
 };
 
 export default battleRepo;
